@@ -1,0 +1,6 @@
+US,United States
+UK,United Kingdom
+CA,Canada
+NZ
+
+AU,Australia
