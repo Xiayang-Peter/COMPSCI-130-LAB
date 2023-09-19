@@ -1,16 +1,21 @@
-from Class import CircularQueue,Stack
+from Class import WordScore
 
-try:
-    q1 = CircularQueue(4)
-    q1.enqueue("A")
-    print(q1)
-    q1.enqueue("B")
-    print(q1)
-    print("Dequeued item: ", q1.dequeue())
-    print(q1)
-    print("Dequeued item: ", q1.dequeue())
-    print(q1)
-    print("Full?", q1.is_full())
-    print("Empty?", q1.is_empty())
-except IndexError as err:
-    print(err) 
+def selection_sort(word_scores):
+    for pass_num in range(len(word_scores)-1, 0, -1):
+        position_largest = 0
+        for i in range(1,pass_num+1):
+            if word_scores[i]>word_scores[position_largest]:
+                position_largest=i
+        word_scores[i],word_scores[position_largest]=word_scores[position_largest],word_scores[i]
+        a = ""
+        for elements in word_scores:
+            a += f"{elements} "
+        print(a)
+
+
+
+a_list = [WordScore('trees')]
+selection_sort(a_list)
+for word_score in a_list:
+    print(word_score, end = ' ')
+print("DONE")

@@ -1,3 +1,29 @@
+class WordScore:
+    def __init__(self, word=""): #assume lowercase letters
+        valid_letters = 'abcdefghijklmnopqrstuvwxyz'
+        score = 0
+        for letter in word:
+            score += valid_letters.index(letter)
+        self.score = score
+        self.word = word
+
+    def __str__(self):
+        return f"{self.word}({self.score})"
+    
+    def __eq__(self, other) :
+        return self.word==other.word
+
+    def __lt__(self, other):
+        if self.score < other.score:
+            return True
+        elif self.score==other.score:
+            if self.word<other.word:
+                return True
+            else:
+                return False
+        return False
+    
+
 class CircularQueue:
     def __init__(self, empty_value = 8):
         self.item = [None] * empty_value
