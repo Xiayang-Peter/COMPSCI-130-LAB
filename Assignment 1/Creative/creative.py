@@ -186,10 +186,11 @@ class Solitaire:
 
 
 
-import tkinter as ttk
 import sv_ttk
 import tkinter
-import tkinter.font as tkFont
+from tkinter import ttk
+import tkinter as tk1
+#import tkinter.font as tkFont
 
 class App:
     def __init__(self, root, cards):
@@ -208,53 +209,65 @@ class App:
         root.resizable(width=False, height=False)
 
         button_trigger1=ttk.Button(root)
-        button_trigger1["anchor"] = "center"
-        button_trigger1["bg"] = "#f0f0f0"
-        ft = tkFont.Font(family='Times',size=10)
-        button_trigger1["font"] = ft
-        button_trigger1["fg"] = "#000000"
-        button_trigger1["justify"] = "center"
+        #button_trigger1["anchor"] = "center"
+        #button_trigger1["bg"] = "#f0f0f0"
+        #ft = tkFont.Font(family='Times',size=10)
+        #button_trigger1["font"] = ft
+        #button_trigger1["fg"] = "#000000"
+        #button_trigger1["justify"] = "center"
+        #button_trigger1["relief"] = "flat"
         button_trigger1["text"] = "return 1"
         button_trigger1.place(x=screenwidth//4,y=370,width=70,height=25)
         button_trigger1["command"] = self.button_trigger1_command
-
+        
         button_trigger2=ttk.Button(root)
-        button_trigger2["anchor"] = "center"
-        button_trigger2["bg"] = "#f0f0f0"
-        ft = tkFont.Font(family='Times',size=10)
-        button_trigger2["font"] = ft
-        button_trigger2["fg"] = "#000000"
-        button_trigger2["justify"] = "center"
+        #button_trigger2["anchor"] = "center"
+        #button_trigger2["bg"] = "#f0f0f0"
+        #ft = tkFont.Font(family='Times',size=10)
+        #button_trigger2["font"] = ft
+        #button_trigger2["fg"] = "#000000"
+        #button_trigger2["justify"] = "center"
         button_trigger2["text"] = "return 2"
-        button_trigger2["relief"] = "sunken"
+        #button_trigger2["relief"] = "flat"
         button_trigger2.place(x=screenwidth//4,y=280,width=70,height=25)
         button_trigger2["command"] = self.button_trigger2_command
 
         button_trigger3=ttk.Button(root)
-        button_trigger3["anchor"] = "center"
-        button_trigger3["bg"] = "#f0f0f0"
-        ft = tkFont.Font(family='Times',size=10)
-        button_trigger3["font"] = ft
-        button_trigger3["fg"] = "#000000"
-        button_trigger3["justify"] = "center"
+        #button_trigger3["anchor"] = "center"
+        #button_trigger3["bg"] = "#f0f0f0"
+        #ft = tkFont.Font(family='Times',size=10)
+        #button_trigger3["font"] = ft
+        #button_trigger3["fg"] = "#000000"
+        #button_trigger3["justify"] = "center"
         button_trigger3["text"] = ""
         button_trigger3.place(x=screenwidth//4,y=310,width=70,height=56)
         button_trigger3["command"] = self.button_trigger3_command
 
         button_color_trigger1 = ttk.Button(root)
-        button_color_trigger1["text"] = "Toggle theme"
+        button_color_trigger1["text"] = "Change Theme!"
         button_color_trigger1["command"] = sv_ttk.toggle_theme
-        button_color_trigger1.place(x=screenwidth//4,y=400,width=70,height=25)
+        button_color_trigger1.place(x=screenwidth//4 - 15,y=400,width=100,height=25)
 
-        message_box1=ttk.Message(root)
-        message_box1["anchor"] = "center"
-        ft = tkFont.Font(family='Times',size=10)
-        message_box1["font"] = ft
-        message_box1["fg"] = "#333333"
-        message_box1["justify"] = "center"
+        message_box1=tk1.Message(root)
+        #message_box1["anchor"] = "center"
+        #ft = tkFont.Font(family='Times',size=10)
+        #message_box1["font"] = ft
+        #message_box1["fg"] = "#000000"
+        #message_box1["bg"] = "#f0f0f0"
+        #message_box1["justify"] = "center"
         message_box1["text"] = solitaire_game.play_new()
-        message_box1["relief"] = "sunken"
+        #message_box1["relief"] = "sunken"
         message_box1.place(x=(screenwidth//4) - 100,y=30,width=296,height=231)
+
+
+    def color_inverse(self):
+        theme_color = sv_ttk.get_theme()
+        if theme_color == "light":
+            print("light")
+            return "dark"
+        elif theme_color == "dark":
+            print("dark")
+            return "light"
 
     def button_trigger1_command(self):
         print("command")
@@ -269,5 +282,5 @@ class App:
 
 root = tkinter.Tk()
 app = App(root,[1,2,3,4,5,6,7,8])
-sv_ttk.set_theme("light")
+sv_ttk.use_dark_theme() 
 root.mainloop()
