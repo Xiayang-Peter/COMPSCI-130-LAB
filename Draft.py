@@ -1,21 +1,17 @@
-from Class import WordScore
+from Class import *
 
-def selection_sort(word_scores):
-    for pass_num in range(len(word_scores)-1, 0, -1):
-        position_largest = 0
-        for i in range(1,pass_num+1):
-            if word_scores[i]>word_scores[position_largest]:
-                position_largest=i
-        word_scores[i],word_scores[position_largest]=word_scores[position_largest],word_scores[i]
-        a = ""
-        for elements in word_scores:
-            a += f"{elements} "
-        print(a)
-
-
-
-a_list = [WordScore('trees')]
-selection_sort(a_list)
-for word_score in a_list:
-    print(word_score, end = ' ')
-print("DONE")
+	
+object1 = CommonLetters()
+object2 = CommonLetters('hello', 'world')
+print(object1)
+print(object2)
+object1.set_first_word('hello')
+print(object1)
+object2.set_second_word('bubble')
+print(object2)
+object3 = CommonLetters('cat', 'banana')
+print(object3)
+print(CommonLetters('cat', 'dog'))
+data = object2.get_common_letters()
+print(type(data))
+print(data)

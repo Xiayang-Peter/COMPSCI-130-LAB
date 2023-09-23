@@ -1,5 +1,11 @@
 creative.py log
 
+Other library uses:
+
+- sv_tty
+    - Link: https://github.com/rdbende/Sun-Valley-ttk-theme
+    - Liences: https://github.com/rdbende/Sun-Valley-ttk-theme/blob/main/LICENSE
+
 
 **29/09/2023**
 - [x] first upload to github
@@ -16,3 +22,14 @@ creative.py log
 **29/09/2023 later same day** 
 - Changed the whole theme to "Sun-Valley-ttk-theme"
 -----------------------------
+
+**23/09/2023** 
+- The based function of the game has already done, including: 
+  - [x] Display current states of game
+  - [x] User can move numbers around the piles according to the rule
+  - [x] User can win or lost after specified round
+  - [x] User can change color now to light or dark with higher visibility
+- These are not / still debugging:
+  - [ ] Change the difficulty of the game based on changing the times of try
+  - [ ] Fixed-length randomized arrays to improve playability
+  - [ ] improve to some detailes
