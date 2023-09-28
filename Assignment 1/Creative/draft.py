@@ -1,5 +1,11 @@
-from creative import Solitaire,CardPile
-a = [1,2,3,4,5,6,7,8]
 
-a = Solitaire(a)
-a.play()
+from creative import * 
+import sv_ttk
+from tkinter import ttk
+import tkinter as tk1
+
+window = tk1.Tk()
+app = App(window,[3, 6, 2, 5, 4, 1])
+sv_ttk.use_dark_theme() 
+window.mainloop()
+
