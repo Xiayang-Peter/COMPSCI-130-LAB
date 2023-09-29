@@ -44,6 +44,6 @@ Other library uses:
 - Move the process of collecting number list from draft.py to creative.py
 DEMO:
 With hidden debug window and rules window:
-![Alt text](image-1.png)
+![Alt text](images\image-1.png)
 Without hidden debug window and rules window + light theme + restrict mode:
-![Alt text](image-2.png) 
+![Alt text](images\image-2.png) 
