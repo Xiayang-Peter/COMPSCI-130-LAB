@@ -91,11 +91,11 @@ class CardPile:
 
                
 class Solitaire:
-    def __init__(self, cards, max_num_moves = None):
+    def __init__(self, cards, max_num_moves = None, num_piles = 5):
         self.piles = []
         self.move_number = 0
         self.num_cards = len(cards)
-        self.num_piles = (self.num_cards // 8) + 3
+        self.num_piles = num_piles
         self.cards = cards
         #?# Number of piles
         self.max_num_moves = max_num_moves
@@ -132,13 +132,13 @@ class Solitaire:
             except IndexError:
                 #?# Condition1 doesn't exist when p2 is empty and condition2 met
                 self.get_pile(p2).add_bottom(self.get_pile(p1).remove_top())
+    
         elif (p1 and p2) > 0 and not self.get_pile(p1).is_empty() and not self.get_pile(p2).is_empty():
             #?# Make sure both p1 and p2 are not empty
             if self.get_pile(p2).peek_bottom() - 1 == self.get_pile(p1).peek_top():
                 for p1_elements in (self.get_pile(p1).remove_all()):
                     self.get_pile(p2).add_bottom(p1_elements)
-        else: #?# if move not vaild, ignore
-            pass
+
 
     def is_complete(self):
         for i in range(self.num_piles):
@@ -170,12 +170,7 @@ class Solitaire:
             self.move(pile1, pile2)
             self.move_number += 1
     
-"""    def GUI_restart_game(self):
-        self.move_number = 0
-        for i in range(self.num_piles):
-            self.get_pile(i).clear()
-        self.piles[0] = self.cards
-"""
+
 
 
             
