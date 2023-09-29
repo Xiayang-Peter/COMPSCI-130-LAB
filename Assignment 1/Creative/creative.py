@@ -1,5 +1,4 @@
 from Class import *
-from creative import * 
 import sv_ttk
 from tkinter import ttk
 import tkinter as tk1
