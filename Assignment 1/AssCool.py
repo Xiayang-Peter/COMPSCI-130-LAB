@@ -2,7 +2,6 @@ from Class import *
 import sv_ttk
 from tkinter import ttk
 import tkinter as tk1
-from Class import *
 import random
 
 class App:
