@@ -123,6 +123,7 @@ class Solitaire:
                 # ?# When move to last index, loop stop
                 self.get_pile(p1).items[i], self.get_pile(
                     p1).items[i + 1] = self.get_pile(p1).items[i + 1], self.get_pile(p1).items[i]
+            return True
         elif (p1 == 0 < p2) and not self.get_pile(p1).is_empty():
             # ?# Make sure p1 is not empty
             try:
@@ -135,12 +136,16 @@ class Solitaire:
             except IndexError:
                 # ?# Condition1 doesn't exist when p2 is empty and condition2 met
                 self.get_pile(p2).add_bottom(self.get_pile(p1).remove_top())
-
+            return True
         elif (p1 and p2) > 0 and not self.get_pile(p1).is_empty() and not self.get_pile(p2).is_empty():
             # ?# Make sure both p1 and p2 are not empty
             if self.get_pile(p2).peek_bottom() - 1 == self.get_pile(p1).peek_top():
                 for p1_elements in (self.get_pile(p1).remove_all()):
                     self.get_pile(p2).add_bottom(p1_elements)
+            return True
+        else:
+            return False
+
 
     def is_complete(self):
         for i in range(self.num_piles):
@@ -168,6 +173,12 @@ class Solitaire:
             return (f"{returned_display}\nRound:{self.move_number} Out of {self.max_num_moves}\n")
 
     def GUI_move(self, pile1, pile2):
-        if pile1 >= 0 and pile2 >= 0 and pile1 < self.num_piles and pile2 < self.num_piles and not self.is_complete():
-            self.move(pile1, pile2)
-            self.move_number += 1
+        try:
+            if pile1 >= 0 and pile2 >= 0 and pile1 < self.num_piles and pile2 < self.num_piles and not self.is_complete():
+                move_status = self.move(pile1, pile2)
+                self.move_number += 1 
+                #return True
+                return move_status
+        except:
+            self.move_number += 1 
+            pass

@@ -7,3 +7,5 @@ window = tk1.Tk()
 app = App(window)
 sv_ttk.use_dark_theme()
 window.mainloop()
+
+ 
