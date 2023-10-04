@@ -1,14 +1,8 @@
-<<<<<<< HEAD
 #Student Name: Xia Yang
 #UPI: yxia728
 
-
-from Class import *
-import sv_ttk
-=======
 # from Class import *
 # import sv_ttk
->>>>>>> fbe94be803fe6700ee253cf5b704ae8027131caf
 from tkinter import ttk
 import tkinter as tk1
 import random
