@@ -180,5 +180,4 @@ class Solitaire:
                 #return True
                 return move_status
         except:
-            self.move_number += 1 
             pass

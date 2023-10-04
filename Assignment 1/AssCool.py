@@ -1,3 +1,7 @@
+#Student Name: Xia Yang
+#UPI: yxia728
+
+
 from Class import *
 import sv_ttk
 from tkinter import ttk
