@@ -2,6 +2,13 @@
 #UPI: yxia728
 
 
+
+
+
+
+
+
+
 class CardPile:
     def __init__(self):
         self.items = []
@@ -93,8 +100,8 @@ class CardPile:
         #?# Returns pile as a list 
         return self.items
 
-            
-        
+
+
 class Solitaire:
     def __init__(self, cards):
         self.piles = []
@@ -107,10 +114,12 @@ class Solitaire:
         for i in range(self.num_cards):
             self.piles[0].add_bottom(cards[i])
 
+
+
     def get_pile(self, i):
-        #?# returns out the specific line of number based on pile index i             
+        # ?# returns out the specific line of number based on pile index i
         return self.piles[i]
-    
+
     def display(self):
         for i in range(self.num_piles):
             print(f"{i}: {self.get_pile(i).return_all(i)}")
@@ -159,11 +168,20 @@ class Solitaire:
         move_number = 1
         while move_number <= self.max_num_moves and not self.is_complete():
             self.display()
-            print("Round", move_number, "out of", self.max_num_moves, end = ": ")
+            print("Round", move_number,
+                  "out of", self.max_num_moves,
+                  end = ": "
+                  )
             pile1 = int(input("Move from pile no.: "))
-            print("Round", move_number, "out of", self.max_num_moves, end = ": ")
+            print("Round", move_number,
+                "out of", self.max_num_moves, 
+                end = ": "
+                )
             pile2 = int(input("Move to pile no.: "))
-            if pile1 >= 0 and pile2 >= 0 and pile1 < self.num_piles and pile2 < self.num_piles:
+            if (pile1 >= 0 
+            and pile2 >= 0 
+            and pile1 < self.num_piles 
+            and pile2 < self.num_piles):
                 self.move(pile1, pile2)
             move_number += 1
             

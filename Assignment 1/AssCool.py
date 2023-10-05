@@ -1,7 +1,6 @@
 #Student Name: Xia Yang
 #UPI: yxia728
 
-# from Class import *
 # import sv_ttk
 from tkinter import ttk
 import tkinter as tk1
@@ -14,30 +13,30 @@ class CardPile:
         self.items = []
 
     def add_top(self, item):
-        # ?# adds a new item to the top of the pile (at items[0]).
-        self.items.insert(0, item)
+        #?# adds a new item to the top of the pile (at items[0]).
+        self.items.insert(0,item)
 
     def add_bottom(self, item):
-        # ?# This method adds a new item to the bottom of the pile (at items[self.size()-1]).
+        #?# This method adds a new item to the bottom of the pile (at items[self.size()-1]).
         self.items.append(item)
 
     def remove_top(self):
-        # ?# This method removes and returns an item from the top of the pile (at items[0]).
+        #?# This method removes and returns an item from the top of the pile (at items[0]).
         removed = self.items[0]
         self.items.pop(0)
         return removed
-
+    
     def remove_bottom(self):
-        # ?# This method removes and returns an item from the bottom of the pile (at items[self.size()-1]).
+        #?# This method removes and returns an item from the bottom of the pile (at items[self.size()-1]).
         removed = self.items[-1]
         self.items.pop(-1)
         return removed
-
+    
     def clear(self):
         self.items = []
 
     def remove_all(self):
-        #!# CAREFUL THIS FUNCTION DELETE THE PILE AND RETURNS A WHOLE LIST
+        #!# CAREFUL THIS FUNCTION DELETE THE PILE AND RETURNS A WHOLE LIST 
         removed_items = self.items
         self.clear()
         return removed_items
@@ -46,41 +45,41 @@ class CardPile:
         return self.items == []
 
     def size(self):
-        # ?# This method returns the size of the pile.
-        return (len(self.items))
-
+        #?# This method returns the size of the pile.
+        return(len(self.items))
+    
     def peek_top(self):
-        # ?# This method returns the top card of the pile (at items[0]).
-        return (self.items[0])
-
+        #?# This method returns the top card of the pile (at items[0]).
+        return(self.items[0])
+    
     def peek_bottom(self):
-        # ?# This method returns the bottom card of the pile (at items[self.size()-1]).
+        #?# This method returns the bottom card of the pile (at items[self.size()-1]).
         #!#return(self.items[self.size() - 1])
-        return (self.items[-1])
+        return(self.items[-1])
 
-    def print_all(self, index=1):
+    def print_all(self, index = 1):               
         if index == 0:
-            # ?#  when index goes to 1, all numbers printed visible
+        #?#  when index goes to 1, all numbers printed visible   
             printed_pile = ""
             try:
-                #!# improved when pile contains no numbers
+            #!# improved when pile contains no numbers
                 printed_pile += f"{self.items[0]} "
                 for i in range(self.size() - 1):
                     printed_pile += "* "
                 print(printed_pile)
             except IndexError:
-                print()
-        else:
-            # ?#  when index goes to 1, all numbers printed visible
+                print()        
+        else:           
+        #?#  when index goes to 1, all numbers printed visible                                   
             printed_pile = ""
             for digits in self.items:
                 printed_pile += f"{digits} "
-            print(printed_pile)
+            print(printed_pile)  
 
-    def return_all(self, index=1):
-        # ?# improvement to the def print_all
+    def return_all(self, index = 1):        
+        #?# improvement to the def print_all
         if index == 0:
-            # ?#  when index goes to 1, all numbers printed visible
+        #?#  when index goes to 1, all numbers printed visible   
             returned_pile = ""
             try:
                 returned_pile += f"{self.items[0]} "
@@ -89,29 +88,26 @@ class CardPile:
                 return returned_pile
             except IndexError:
                 return ""
-        else:
-            # ?#  when index goes to 1, all numbers printed visible
+        else:           
+        #?#  when index goes to 1, all numbers printed visible                                   
             returned_pile = ""
             for digits in self.items:
                 returned_pile += f"{digits} "
             return returned_pile
 
     def return_item_list(self):
-        # ?# Returns pile as a list
+        #?# Returns pile as a list 
         return self.items
 
-
 class Solitaire:
-    def __init__(self, cards, max_num_moves=None, num_piles=5):
+    def __init__(self, cards, max_num_moves=12, num_piles=5):
         self.piles = []
-        self.move_number = 0
+        self.current_move_number = 0
         self.num_cards = len(cards)
         self.num_piles = num_piles
         self.cards = cards
         # ?# Number of piles
         self.max_num_moves = max_num_moves
-        if self.max_num_moves == None:
-            self.max_num_moves = self.num_cards * 2
         for i in range(self.num_piles):
             self.piles.append(CardPile())
         for i in range(self.num_cards):
@@ -174,21 +170,27 @@ class Solitaire:
         for i in range(self.num_piles):
             returned_display += (f"{i}: {self.get_pile(i).return_all(i)}\n")
         if self.is_complete():
-            return (f"{returned_display}\nYou Win in {self.move_number - 1} steps!\n")
-        elif self.move_number >= self.max_num_moves and not self.is_complete():
+            return (
+                f"{returned_display}\nYou Win in"
+                f" {self.current_move_number - 1} steps!\n"
+                )
+        elif self.current_move_number >= self.max_num_moves:
             return (f"{returned_display}\nYou Lose!\n")
         else:
-            return (f"{returned_display}\nRound:{self.move_number} Out of {self.max_num_moves}\n")
+            return (
+                f"{returned_display}\nRound: {self.current_move_number}"
+                f" Out of {self.max_num_moves}\n"
+                )
 
     def GUI_move(self, pile1, pile2):
         try:
             if pile1 >= 0 and pile2 >= 0 and pile1 < self.num_piles and pile2 < self.num_piles and not self.is_complete():
                 move_status = self.move(pile1, pile2)
-                self.move_number += 1
+                self.current_move_number += 1
                 # return True
                 return move_status
         except:
-            self.move_number += 1
+            self.current_move_number += 1
             pass
 # Ass.py Class modified
 
@@ -213,8 +215,7 @@ But also you can swap the first and the last digit for the first pile !\n\n don'
         self.restrict_mode = False
         # init the game from Solitaire
         self.cards = random.sample(range(1, 7), 6)
-#       global solitaire_game
-#       solitaire_game = Solitaire(self.cards)
+
         self.solitaire_game = Solitaire(self.cards)
         self.root = root
 
@@ -222,8 +223,6 @@ But also you can swap the first and the last digit for the first pile !\n\n don'
         self.root.title("Simple Solitaire Game :)")
         # setting title
         # setting window size
-#        self.screenwidth = self.root.winfo_screenwidth()
-#        self.screenheight = self.root.winfo_screenheight()
         self.screenwidth = 1920
         self.screenheight = 1080
         self.root.geometry(f"{self.screenwidth // 2}x{self.screenheight // 2}")
@@ -243,10 +242,10 @@ But also you can swap the first and the last digit for the first pile !\n\n don'
         # ?# Main game window
 
         # ?# information box trigger
-        self.button_trigger4 = ttk.Button(self.root)
-        self.button_trigger4["command"] = self.disable_information_box
-        self.button_trigger4["text"] = "Hide debug window and rules"
-        self.button_trigger4.place(
+        self.button_trigger1 = ttk.Button(self.root)
+        self.button_trigger1["command"] = self.disable_information_box
+        self.button_trigger1["text"] = "Hide debug window and rules"
+        self.button_trigger1.place(
             x=self.button_start_position_x - 70,
             y=self.button_start_position_y,
             width=226,
@@ -299,21 +298,21 @@ But also you can swap the first and the last digit for the first pile !\n\n don'
         self.button_trigger3.place(
             x=self.button_start_position_x - 5,
             y=self.button_start_position_y + 140, width=80,
-            height=30)
+            height=30) 
 
 #        self.button_color_trigger1 = ttk.Button(self.root)
 #        self.button_color_trigger1["text"] = "Change Theme!"
 #        self.button_color_trigger1["command"] = self.color_inverse
 #        self.button_color_trigger1.place(x=self.button_start_position_x - 20,#        y=self.button_start_position_y + 175,width=100,height=30)
 
-        self.button_trigger3_restrict_mode = ttk.Button(self.root)
-        self.button_trigger3_restrict_mode.place(
+        self.button_trigger4 = ttk.Button(self.root)
+        self.button_trigger4.place(
             x=self.button_start_position_x - 40,
             y=self.button_start_position_y + 210,
             width=150,
             height=30)
-        self.button_trigger3_restrict_mode["text"] = "enter restrict mode"
-        self.button_trigger3_restrict_mode["command"] = self.button_trigger3_restrict_mode_command
+        self.button_trigger4["text"] = "enter restrict mode"
+        self.button_trigger4["command"] = self.button_trigger4_command
 
         #!# information_box
         self.message_box2_rules = tk1.Text(self.root)
@@ -332,7 +331,9 @@ But also you can swap the first and the last digit for the first pile !\n\n don'
         #!# information_box
 
     def surprise(self):
-        if self.message_box2_rules.get(1.0, "end") != f"{self.rules}\n":
+        if (
+            self.message_box2_rules.get(1.0, "end") != 
+            f"{self.rules}\n"):
             self.message_box2_rules.delete('1.0', "end")
             self.message_box2_rules.insert(
                 "end", "      ________________________        /(ಠ_ಠ/)\n     |                        |\n     |WHY RU DELETING ME????? |       **PLONK**\n     |________________________|")
@@ -383,7 +384,7 @@ But also you can swap the first and the last digit for the first pile !\n\n don'
         self.solitaire_game = Solitaire(self.cards)
         self.restrict_mode = False
         self.message_box1["text"] = self.solitaire_game.GUI_display()
-        self.button_trigger3_restrict_mode["text"] = "enter restrict mode"
+        self.button_trigger4["text"] = "enter restrict mode"
         self.print_message("Game restarted")
 
     def button_trigger3_command_restrict_mode(self):
@@ -393,38 +394,42 @@ But also you can swap the first and the last digit for the first pile !\n\n don'
         move_to = self.entry_2.get()
         self.solitaire_game.GUI_move(move_from, move_to)
         self.message_box1["text"] = self.solitaire_game.GUI_display()
-        self.print_message(f"move from pile: {move_from} to pile: {move_to}")
+        self.print_message(
+            f"move from pile: {move_from}"
+            f" to pile: {move_to}")
 
     def button_trigger3_command(self):
         self.surprise()
         try:
             move_from = int(self.entry_1.get())
             move_to = int(self.entry_2.get())
-            states = self.solitaire_game.GUI_move(move_from, move_to)
-            if states:
+            status = self.solitaire_game.GUI_move(move_from, move_to)
+            if status:
                 self.message_box1["text"] = self.solitaire_game.GUI_display()
                 self.print_message(
                     f"move from pile: {move_from} to pile: {move_to}")
             else:
                 self.message_box1["text"] = self.solitaire_game.GUI_display()
-                self.print_message("Wrong move, please read rules carefully !")
+                self.print_message(
+                    "Wrong move, "
+                    "please read rules carefully !")
         except ValueError:
             self.print_message("Pile number must be numbers !")
 
-    def button_trigger3_restrict_mode_command(self):
+    def button_trigger4_command(self):
         self.surprise()
         if not self.restrict_mode:
             self.solitaire_game = Solitaire(
                 self.cards, max_num_moves=8, num_piles=4)
             self.message_box1["text"] = self.solitaire_game.GUI_display()
-            self.button_trigger3_restrict_mode["text"] = "exit restrict mode"
+            self.button_trigger4["text"] = "exit restrict mode"
             self.restrict_mode = True
             self.button_trigger3["command"] = self.button_trigger3_command_restrict_mode
             self.print_message("Enter restrict mode")
         else:
             self.solitaire_game = Solitaire(self.cards)
             self.message_box1["text"] = self.solitaire_game.GUI_display()
-            self.button_trigger3_restrict_mode["text"] = "enter restrict mode"
+            self.button_trigger4["text"] = "enter restrict mode"
             self.restrict_mode = False
             self.button_trigger3["command"] = self.button_trigger3_command
             self.print_message("Exit restrict mode")
